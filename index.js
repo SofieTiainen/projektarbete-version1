@@ -11,50 +11,50 @@ switchColorBtn.addEventListener("click", () => {
 });
 
 
-let myQuizQuestions = [
-    {
-        question: "Kossor har 4 ben",
-        correctAnswer: "1. sant"
-    },
-    {
-        question: "Myror har 4 ben",
-        correctAnswer: "2. falskt"
-    },
-    {
-        question: "Pingviner har 2 ben",
-        correctAnswer: "3. sant"
-    }
-];
+let quizAnswers = ["1. brun", "1. svart", "1. vit", "2. frukt", "2. grönsaker", "2. mjölk", "3. sant", "4. sant", "5. sant"];
 
 
-let allQuestions = document.querySelector("#allQuestions");
+let allQuestions = document.querySelector("#allQuestions"); //ej använt
 let showResultBtn = document.querySelector("#showResult");
 let results = document.querySelector("#results");
-let checkboxes = document.querySelectorAll("input[name='answer']");
+let checkboxes = document.querySelectorAll("input[name='answer']"); //ej använt
+
+function oneCheckedBox(obj) {
+    let boxes = document.getElementsByClassName("check1")
+    for (let i = 0; i < boxes.length; i++) {
+        boxes[i].checked = false;
+    }
+
+    obj.checked = true;
+}
 
 
 let runFiltering = () => {
     let allCheckedInputs = document.querySelectorAll("input[type='checkbox'][name='answer']:checked");
+    let allCheckedRadios = document.querySelectorAll("[type='radio']:checked");
+
     let inputValues = [];
     allCheckedInputs.forEach((input) => {
         inputValues.push(input.value);
     });
+    allCheckedRadios.forEach((input) => {
+        inputValues.push(input.value);
+    })
 
-    let allCorrectAnswers = [];
     let totalPoints = 0;
-    myQuizQuestions.forEach((object) => {
-        allCorrectAnswers.push(object.correctAnswer);
+    quizAnswers.forEach((object) => {
         let p = document.createElement('p')
         results.innerText = "";
-        if (inputValues.includes(object.correctAnswer)) {
+        if (inputValues.includes(object)) {
             totalPoints++
-            p.innerText = `You got ${totalPoints}/3 points!`
+            p.innerText = `You got ${totalPoints}/5 points!`
         } else {
-            p.innerText = `You got ${totalPoints}/3 points!`
+            p.innerText = `You got ${totalPoints}/5 points!`
         }
         results.append(p)
 
     })
+
 };
 
 showResultBtn.addEventListener('click', () => {
