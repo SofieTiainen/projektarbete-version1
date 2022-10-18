@@ -11,21 +11,14 @@ switchColorBtn.addEventListener("click", () => {
 });
 
 
-let quizAnswers = ["1. brun", "1. svart", "1. vit", "2. frukt", "2. grönsaker", "2. mjölk", "3. sant", "4. sant", "5. sant"];
+let quizAnswers = ["1. brun", "1. svart", "1. vit", "2. frukt", "2. grönsaker", "2. mjölk", "3. matta", "4. frukt", "5. frukt", "6. 500 gram", "7. sant", "8. sant", "9. sant", "10. sant"];
 
 
 let allQuestions = document.querySelector("#allQuestions"); //ej använt
 let showResultBtn = document.querySelector("#showResult");
 let results = document.querySelector("#results");
-let checkboxes = document.querySelectorAll("input[name='answer']"); //ej använt
-
-function oneCheckedBox(obj) {
-    let boxes = document.getElementsByClassName("check")
-    for (let i = 0; i < boxes.length; i++) {
-        boxes[i].checked = false;
-    }
-    obj.checked = true;
-}
+// let checkboxes = document.querySelectorAll("input[name='answer'][name='answer']");
+// let checkboxes = document.querySelectorAll("div.question1, div.question2");
 
 
 let runFiltering = () => {
@@ -46,9 +39,9 @@ let runFiltering = () => {
         results.innerText = "";
         if (inputValues.includes(object)) {
             totalPoints++
-            p.innerText = `You got ${totalPoints}/5 points!`
+            p.innerText = `You got ${totalPoints}/10 points!`
         } else {
-            p.innerText = `You got ${totalPoints}/5 points!`
+            p.innerText = `You got ${totalPoints}/10 points!`
         }
         results.append(p)
 
