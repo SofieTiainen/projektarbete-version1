@@ -20,11 +20,10 @@ let results = document.querySelector("#results");
 let checkboxes = document.querySelectorAll("input[name='answer']"); //ej använt
 
 function oneCheckedBox(obj) {
-    let boxes = document.getElementsByClassName("check1")
+    let boxes = document.getElementsByClassName("check")
     for (let i = 0; i < boxes.length; i++) {
         boxes[i].checked = false;
     }
-
     obj.checked = true;
 }
 
