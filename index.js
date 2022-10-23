@@ -87,7 +87,7 @@ let chooseOnly2 = () => {
         }
     }
 }
-
+/*Function- get results*/
 
 let runFiltering = () => {
     let allCheckedInputs = document.querySelectorAll("input[type='checkbox'][name='answer']:checked");
