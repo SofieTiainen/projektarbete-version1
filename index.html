@@ -11,12 +11,12 @@
 </head>
 
 <body>
-    <h1>QUIZZIE TIME</h1>
-    <div>
+    <h1 id="heading">QUIZZIE TIME</h1>
+    <div id="switchMode">
         <button id="swithModeBtn">Switch to darkmode</button>
     </div><br>
     <div id="allQuestions">
-        <label for="question1">Vilken färg på päls kan hundar ha?</label>
+        <label for="question1">Vilken färg på päls kan hundar ha? <br> (Note! Fill in two answers)</label>
         <div id="question1" class="question" value="Vilken färg på päls kan hundar ha?">
             <label for="a1">Brun</label>
             <input type="checkbox" class="check1" name="answer" id="a1" value="1. brun" /><br>
@@ -27,7 +27,7 @@
             <label for="d1">Grön</label>
             <input type="checkbox" class="check1" name="answer" id="d1" value="1. grön" /><br>
         </div><br>
-        <label for="question2">Vad kan man hitta i en mataffär?</label>
+        <label for="question2">Vad kan man hitta i en mataffär? <br>(Note! Fill in two answers) </label>
         <div id="question2" class="question" value="Vad kan man hitta i en mataffär?">
             <label for="a2">Frukt</label>
             <input type="checkbox" class="check2" name="answer" id="a2" value="2. frukt" /><br>
@@ -111,8 +111,8 @@
             <input type="radio" name="answer10" id="b10" value="10. sant" />
         </div><br>
     </div>
-    <button id="showResult">Visa mitt resultat</button>
-    <div id="results"></div>
+    <button id="showResult">SHOW RESULT</button>
+    <div id="result"></div>
 
 </body>
 

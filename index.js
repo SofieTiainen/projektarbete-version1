@@ -10,17 +10,21 @@ let switchMode = () => {
     }
 }
 
-/*All quizQuestions and correct answers*/
-let quizAnswers = [
+/*All quizQuestions and all correct answers + wrong answers for question 1 and 2*/
+let quizData = [
     {
         question: 'Vilken färg på päls kan hundar ha?',
         answer1a: '1. brun',
-        answer1b: '1. svart'
+        answer1b: '1. svart',
+        answer1c: '1. rosa',
+        answer1d: '1. grön'
     },
     {
         question: 'Vad kan man hitta i en mataffär?',
         answer2a: '2. frukt',
-        answer2b: '2. grönsaker'
+        answer2b: '2. grönsaker',
+        answer2c: '2. stenar',
+        answer2d: '2. möbler'
     },
     {
         question: 'Vad kan man hitta i en möbelbutik?',
@@ -58,105 +62,68 @@ let quizAnswers = [
 
 
 let showResultBtn = document.querySelector('#showResult');
-let results = document.querySelector('#results');
-let question1Boxes = document.querySelectorAll("input[type='checkbox'][name='answer'][class='check1']");
-let question2Boxes = document.querySelectorAll("input[type='checkbox'][name='answer'][class='check2']");
+let result = document.querySelector('#result');
 
-/*Function- choose only two checkboxes for question 1 and 2*/
-let chooseOnly2 = () => {
-    total = 0;
-    for (i = 0; i < question1Boxes.length; i++) {
-        if (question1Boxes[i].checked) {
-            total += 1;
-        }
-        if (total > 2) {
-            total = 0;
-            alert('Choose only two')
-            question1Boxes[i].checked = false;
-        }
-    }
-    total = 0;
-    for (i = 0; i < question2Boxes.length; i++) {
-        if (question2Boxes[i].checked) {
-            total += 1;
-        }
-        if (total > 2) {
-            total = 0;
-            alert('Choose only two')
-            question2Boxes[i].checked = false;
-        }
-    }
-}
-/*Function- get results*/
-
-let runFiltering = () => {
-    let allCheckedInputs = document.querySelectorAll("input[type='checkbox'][name='answer']:checked");
-    let allCheckedRadios = document.querySelectorAll("[type='radio']:checked");
+let getResult = () => {
+    let allCheckboxesInput = document.querySelectorAll("input[type='checkbox'][name='answer']:checked");
+    let allRadiosInput = document.querySelectorAll("[type='radio']:checked");
     let totalPoints = 0;
     let maxPoint = 10;
     let inputValues = [];
 
-    allCheckedInputs.forEach((input) => {
+    allCheckboxesInput.forEach((input) => {
         inputValues.push(input.value);
     });
-    allCheckedRadios.forEach((input) => {
+    allRadiosInput.forEach((input) => {
         inputValues.push(input.value);
     })
 
-    results.innerText = '';
+    result.innerText = '';
 
-    if (inputValues.length === 12) {
-        quizAnswers.forEach((object) => {
-            let p = document.createElement('p')
-            p.innerText = `Question: ${object.question}`
-            if (inputValues.includes(object.answer) || (inputValues.includes(object.answer1a)) && (inputValues.includes(object.answer1b)) || (inputValues.includes(object.answer2a)) && (inputValues.includes(object.answer2b))) {
-                totalPoints++
-                p.innerHTML += ` <strong>You answered right!</strong>`
-            } else {
-                p.innerHTML += ` <strong>You answered wrong!</strong>`
-            }
-            results.append(p)
-        })
-
-        let p2 = document.createElement('p')
-        p2.innerText = `You got ${totalPoints}/10 points!`
-        if (totalPoints < maxPoint * 0.5) {
-            p2.style.color = 'red';
-            p2.innerHTML += ` <strong>You failed the test</strong>`
-        } else if (totalPoints > maxPoint * 0.75) {
-            p2.style.color = 'green';
-            p2.innerHTML += ` <strong>You passed the test with special distinction</strong>`
+    quizData.forEach((object) => {
+        let p = document.createElement('p')
+        p.innerText = `Question: ${object.question}`
+        if (inputValues.includes(object.answer) || (inputValues.includes(object.answer1a)) && (inputValues.includes(object.answer1b)) && (!inputValues.includes(object.answer1c)) && (!inputValues.includes(object.answer1d)) || (inputValues.includes(object.answer2a)) && (inputValues.includes(object.answer2b)) && (!inputValues.includes(object.answer2c)) && (!inputValues.includes(object.answer2d))) {
+            totalPoints++
+            p.innerHTML += ` <strong>You answered right!</strong>`
         } else {
-            p2.style.color = 'orange';
-            p2.innerHTML += ` <strong>You passed the test</strong>`
+            p.innerHTML += ` <strong>You answered wrong!</strong>`
         }
-        results.append(p2)
+        result.append(p)
+    })
 
-        let refreshQuizBtn = document.createElement('button')
-        refreshQuizBtn.id = 'newQuizBtn'
-        refreshQuizBtn.innerText = `Do quiz again`;
-        results.append(refreshQuizBtn)
-        refreshQuizBtn.addEventListener('click', () => {
-            location.reload();
-        })
-
+    let p2 = document.createElement('p')
+    p2.innerText = `You got ${totalPoints}/10 points!`
+    if (totalPoints < maxPoint * 0.5) {
+        p2.style.color = 'red';
+        p2.innerHTML += ` <strong>You failed the test</strong>`
+    } else if (totalPoints > maxPoint * 0.75) {
+        p2.style.color = 'green';
+        p2.innerHTML += ` <strong>You passed the test with special distinction</strong>`
     } else {
-        alert('You need to answer all questions')
+        p2.style.color = 'orange';
+        p2.innerHTML += ` <strong>You passed the test</strong>`
     }
-};
+    result.append(p2)
 
+    let refreshQuizBtn = document.createElement('button')
+    refreshQuizBtn.id = 'refreshQuizBtn'
+    refreshQuizBtn.innerText = `Do quiz again`;
+    result.append(refreshQuizBtn)
+    refreshQuizBtn.addEventListener('click', () => {
+        location.reload();
+    })
+
+
+
+
+
+}
 
 switchModeBtn.addEventListener('click', () => {
     switchMode();
 })
 
-question1Boxes.forEach((box) => {
-    box.addEventListener('change', chooseOnly2);
-})
-
-question2Boxes.forEach((box) => {
-    box.addEventListener('change', chooseOnly2);
-})
 showResultBtn.addEventListener('click', () => {
-    runFiltering();
+    getResult();
 })

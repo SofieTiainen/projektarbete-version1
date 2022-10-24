@@ -16,11 +16,13 @@ body {
 
 #swithModeBtn {
     font-family: fantasy;
+    font-size: large;
     background: rgb(238, 174, 202);
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
     border-radius: 12px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-weight: 1;
+
 }
 
 #showResult {
@@ -35,9 +37,17 @@ body {
 
 }
 
-#newQuizBtn {
+#refreshQuizBtn {
+    font-family: fantasy;
+    font-size: x-large;
     background: rgb(238, 174, 202);
     background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
     border-radius: 12px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 200px;
+}
+
+#result {
+    font-size: large;
+
 }
