@@ -10,6 +10,11 @@ body {
 }
 
 .question {
+    font-size: medium;
+    font-weight: 0;
+}
+
+.questions {
     font-size: large;
     font-weight: bold;
 }
