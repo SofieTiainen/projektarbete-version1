@@ -89,7 +89,6 @@ let getResult = () => {
         if ((inputValues.includes(object.answer)) || (inputValues.includes(object.answer[0])) && (inputValues.includes(object.answer[1])) && (!inputValues.includes(object.answer[1, 2])) && (!inputValues.includes(object.answer[1, 3]))) {
             totalPoints++
             p.innerHTML += ` <strong>You answered<span style= "color: green"> right!</span</strong>`
-
         } else {
             p.innerHTML += ` <strong>You answered<span style= "color: red"> wrong!</span</strong>`
         }
